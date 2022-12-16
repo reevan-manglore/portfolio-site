@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+    .nav-link {
+        @apply text-2xl mx-2 relative;
+
+    }
+
+    .hamburger-btn {
+        @apply flex flex-col justify-center content-center h-6 w-12 relative;
+
+    }
+
+    .hamburger-btn>span {
+        @apply bg-black h-[3px] text-end absolute;
+        @apply transition-all
+    }
+
+    .hamburger-btn>span:nth-of-type(1) {
+        @apply w-9 right-0 top-0;
+    }
+
+    .hamburger-btn>span:nth-of-type(2) {
+        @apply w-6 right-0;
+        @apply duration-300
+    }
+
+    .hamburger-btn>span:nth-of-type(3) {
+        @apply w-3 right-0 bottom-0;
+    }
+
+
+    /* when hamburger menu is open this style is applied to form cross mark from hamburger */
+
+    .hamburger-btn-open>span:nth-of-type(1) {
+        @apply rotate-45 top-auto;
+    }
+
+    .hamburger-btn-open>span:nth-of-type(2) {
+        @apply w-0 opacity-0;
+    }
+
+    .hamburger-btn-open>span:nth-of-type(3) {
+        @apply w-9 -rotate-45 bottom-auto;
+    }
+
+    .menu {
+        @apply max-md:absolute max-md:h-[86vh] max-md:w-screen max-md:top-full overflow-hidden;
+        @apply max-md:right-0 items-center flex max-md:justify-end;
+        @apply max-md:scale-x-0 origin-right;
+
+    }
+
+    .menu>ul {
+        @apply max-md:flex-col max-md:px-8 max-md:bg-primary;
+        @apply w-fit max-md:h-full justify-start;
+    }
+
+    .menu>ul>li {
+        @apply max-md:my-8;
+        @apply max-md:translate-x-full ease-in-out;
+    }
+
+
+
+
+    .menu-open {
+        @apply delay-100 duration-100 bg-black bg-opacity-50 scale-x-100;
+    }
+
+    .menu-open>ul>li:nth-of-type(1) {
+        @apply delay-200 duration-100 -translate-x-0;
+    }
+
+    .menu-open>ul>li:nth-of-type(2) {
+        @apply delay-300 duration-100 -translate-x-0;
+    }
+
+    .menu-open>ul>li:nth-of-type(2) {
+        @apply delay-[400ms] duration-100 -translate-x-0;
+    }
+
+    .menu-open>ul>li:nth-of-type(3) {
+        @apply delay-500 duration-100 -translate-x-0;
+    }
+    .menu-open>ul>li:nth-of-type(4) {
+        @apply delay-[600ms] duration-100 -translate-x-0;
+    }
+
+  
+
+
+
+    /*navlinks are nothing but links  inside .menu > ul > li elements*/
+    .nav-link {
+        @apply max-md:py-3 relative;
+
+    }
+
+    .nav-link-active {
+        @apply font-semibold max-md:scale-110 scale-105;
+
+    }
+
+
+    @media screen(md) {
+        .nav-link {
+            @apply before:absolute before:bottom-0 before:bg-black;
+            @apply before:w-full before:h-0.5 before:rounded-lg before:scale-x-0;
+            @apply hover:before:scale-x-100 before:transition-transform before:origin-left;
+
+        }
+    }
+
+
+}
+
+
+
+
+@layer utilities {
+   
+    .stacked-shadow {
+        box-shadow: theme(colors.primary) 4px 4px 0px -1px,
+                    theme(colors.gray.600) 4px 4px, 
+                    theme(colors.primary) 8px 8px 0px -1px,
+                    theme(colors.gray.600) 8px 8px;
+                    
+    }
+
+    .stacked-shadow-disappear{
+        animation: stacked-shadow-animation 200ms ease-in-out forwards;
+    }
+
+
+    @keyframes stacked-shadow-animation {
+        0%{
+            box-shadow: theme(colors.primary) 4px 4px 0px -1px,
+            theme(colors.gray.600) 4px 4px, 
+            theme(colors.primary) 8px 8px 0px -1px,
+            theme(colors.gray.600) 8px 8px;
+        }
+        25%{
+            box-shadow: theme(colors.primary) 2px 2px 0px -1px,
+            theme(colors.gray.600) 2px 2px, 
+            theme(colors.primary) 8px 8px 0px -1px,
+            theme(colors.gray.600) 8px 8px;
+        }
+        50%{
+            box-shadow: theme(colors.primary) 0px 0px 0px -1px,
+            theme(colors.gray.600) 0px 0px, 
+            theme(colors.primary) 4px 4px 0px -1px,
+            theme(colors.gray.600) 4px 4px;
+            transform:translate(1px);
+        }
+        75%{
+            box-shadow: theme(colors.primary) 0px 0px 0px -1px,
+            theme(colors.gray.600) 0px 0px, 
+            theme(colors.primary) 2px 2px 0px -1px,
+            theme(colors.gray.600) 2px 2px;
+            transform:translate(2px);
+        }
+        100%{
+            box-shadow: theme(colors.primary) 0px 0px 0px -1px,
+            theme(colors.gray.600) 0px 0px, 
+            theme(colors.primary) 0px 0px 0px -1px,
+            theme(colors.gray.600) 0px 0px;
+            transform:translate(4px);
+        }
+        
+    }
+
+    /* wrote just to know how to use clip path polygon */
+    .clip-left-edge {
+        --cutting-length: 1.8em;
+        clip-path: polygon(0 var(--cutting-length),
+                /*1.8em in y direction from top left*/
+                var(--cutting-length) 0,
+                /*1.8em in x direction from top left*/
+                100% 0,
+                /*top right*/
+                100% 100%,
+                /*bottom right*/
+                0 100%
+                /*bottom left*/
+            );
+
+    }
+    
+    .wavy-top-border {
+            --mask:
+            radial-gradient(7.25px at 50% 10.25px,#000 99%,#0000 101%) calc(50% - 10px) 0/20px 100%,
+            radial-gradient(7.25px at 50% -5.25px,#0000 99%,#000 101%) 50% 5px/20px 100% repeat-x;
+            -webkit-mask: var(--mask);
+                    mask: var(--mask);
+    }
+    
+
+
+}
