@@ -51,7 +51,7 @@
 
     .menu {
         @apply max-md:absolute max-md:h-[86vh] max-md:w-screen max-md:top-full overflow-hidden;
-        @apply max-md:right-0 items-center flex max-md:justify-end;
+        @apply max-md:right-0 items-center flex flex-row md:flex-row max-md:justify-end  md:justify-center;
         @apply max-md:scale-x-0 origin-right;
 
     }
@@ -63,33 +63,33 @@
 
     .menu>ul>li {
         @apply max-md:my-8;
-        @apply max-md:translate-x-full ease-in-out;
+        @apply max-md:translate-x-full opacity-0;
     }
 
 
 
 
     .menu-open {
-        @apply delay-100 duration-100 bg-black bg-opacity-50 scale-x-100;
+        @apply delay-100 duration-100  ease-out bg-black bg-opacity-50 scale-x-100;
     }
 
     .menu-open>ul>li:nth-of-type(1) {
-        @apply delay-200 duration-100 -translate-x-0;
+        @apply delay-300 duration-[250ms] translate-x-0 opacity-100;
     }
 
     .menu-open>ul>li:nth-of-type(2) {
-        @apply delay-300 duration-100 -translate-x-0;
+        @apply delay-[400ms] duration-[250ms] translate-x-0 opacity-100;
     }
 
     .menu-open>ul>li:nth-of-type(2) {
-        @apply delay-[400ms] duration-100 -translate-x-0;
+        @apply delay-500 duration-[250ms] translate-x-0 opacity-100;
     }
 
     .menu-open>ul>li:nth-of-type(3) {
-        @apply delay-500 duration-100 -translate-x-0;
+        @apply delay-[600ms] duration-[250ms] translate-x-0 opacity-100;
     }
     .menu-open>ul>li:nth-of-type(4) {
-        @apply delay-[600ms] duration-100 -translate-x-0;
+        @apply delay-700 duration-[250ms] translate-x-0 opacity-100;
     }
 
   
@@ -114,6 +114,39 @@
             @apply before:w-full before:h-0.5 before:rounded-lg before:scale-x-0;
             @apply hover:before:scale-x-100 before:transition-transform before:origin-left;
 
+        }
+        .menu > ul> li{
+            @apply -translate-y-full opacity-0;
+            animation: navEnter 250ms ease-out  normal forwards;
+        }
+
+
+         .menu > ul >li:nth-of-type(1){
+            animation-delay: 300ms;
+        
+        }
+
+        .menu > ul >li:nth-of-type(2){
+            animation-delay: 400ms;
+        }
+
+        .menu > ul >li:nth-of-type(3){
+            animation-delay: 500ms; 
+        }
+
+        .menu > ul >li:nth-of-type(4){
+            animation-delay: 600ms;
+        } 
+
+        @keyframes navEnter {
+            from{
+                transform: translateY(-100%);
+                @apply opacity-0;
+            }
+            to{
+                transform: translate(0,0);
+                @apply opacity-100;
+            }
         }
     }
 
